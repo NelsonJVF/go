@@ -29,7 +29,7 @@ config = []configuration{
 }
 ```
 
-After that you can just invoque the following methods:
+After that you can simply use the following methods to interact with JIRA:
 
 ```go
 // Get Jira issue information
