@@ -1,6 +1,6 @@
 # GoJira [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/nelsonjvf/gojira) [![Build Status](http://img.shields.io/travis/fatih/structs.svg?style=flat-square)]() [![Coverage Status](http://img.shields.io/coveralls/fatih/structs.svg?style=flat-square)]()
 
-GoJira it's a generic library to interact with Atlassian Jira REST API.
+GoJira is a generic library to interact with Atlassian Jira REST API.
 
 ## Install
 
