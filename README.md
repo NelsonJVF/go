@@ -43,11 +43,11 @@ jira.RequestSearch("Error on workspace")
 
 We can get a issue information
 
-```jira.jiraIssue(issueId)```
+```jira.RequestIssue(issueId)```
 
 We can also search in Jira:
 
-```RequestSearch(query)```
+```jira.RequestSearch(query)```
 
 ## Credits
 
