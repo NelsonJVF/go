@@ -41,7 +41,7 @@ jira.RequestSearch("Error on workspace")
 
 ### GoJira methods
 
-We can get a issue information
+We can get an issue information
 
 ```jira.RequestIssue(issueId)```
 
