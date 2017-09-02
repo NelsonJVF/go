@@ -37,6 +37,49 @@ gojira.RequestIssue("Dev Team", "JIRA-4968")
 gojira.RequestSearch("Project", "Error on workspace")
 ```
 
+There is the full code to test it easly:
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/nelsonjvf/gojira"
+	"io/ioutil"
+	"log"
+	"gopkg.in/yaml.v2"
+)
+
+func init() {
+	// Use yaml configuration file
+	yamlFile, err := ioutil.ReadFile("config.yaml")
+	if err != nil {
+		log.Printf("yamlFile.Get err   #%v ", err)
+	}
+
+	err = yaml.Unmarshal(yamlFile, &gojira.Config)
+	if err != nil {
+		log.Fatalf("Unmarshal: %v", err)
+	}
+}
+
+func main() {
+	fmt.Println("Starting test..")
+
+	fmt.Println("Calling RequestIssue method:")
+
+	issueToSearch := "ISSUE-12345"
+	requestIssueResponse := gojira.RequestIssue("Test Jira Env", issueToSearch)
+    fmt.Println(requestIssueResponse)
+
+	fmt.Println("Calling RequestSearch method:")
+
+	stringToSearch := "Bug with comma"
+	requestSearchResponse := gojira.RequestSearch("Project", stringToSearch)
+	fmt.Println(requestSearchResponse)
+}
+```
+
 ### GoJira methods
 
 We can get an issue information
