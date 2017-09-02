@@ -14,7 +14,7 @@ import (
 /*
 	Struct for Jira access information
  */
-type configuration struct {
+type Configuration struct {
   Lable string `yaml:"lable"` // Some projects have more than one Jira, so just lable as you wish
   User string  `yaml:"user"` // Username for Jira
   Pass string  `yaml:"pass"` // Password from Jira Username
@@ -352,27 +352,24 @@ type JiraSearchResponse struct {
 	} `json:"issues"`
 }
 
-var config []configuration
+var Config []Configuration
 
-func setConf() {
+func setConf(externalConfig []Configuration) {
+	// Use external configuration
+	if(externalConfig != nil) {
+		Config = externalConfig
+		return
+	}
+
+	// Use yaml configuration file
 	yamlFile, err := ioutil.ReadFile("config.yaml")
 	if err != nil {
 		log.Printf("yamlFile.Get err   #%v ", err)
 	}
 
-	err = yaml.Unmarshal(yamlFile, &config)
+	err = yaml.Unmarshal(yamlFile, &Config)
 	if err != nil {
 		log.Fatalf("Unmarshal: %v", err)
-	}
-}
-
-func init() {
-	setConf()
-}
-
-func checkError(e error) {
-	if e != nil {
-		log.Println(e)
 	}
 }
 
@@ -385,7 +382,7 @@ func HTTPRequest(project string, urlPath string) []byte {
   var passJira string
   var urlJira string
 
-  for _, c := range config {
+  for _, c := range Config {
     if c.Lable == project {
       userJira = c.User
       passJira = c.Pass
@@ -396,16 +393,23 @@ func HTTPRequest(project string, urlPath string) []byte {
   urlJira = fmt.Sprintf("%s%s", urlJira, urlPath)
 
 	req, err := http.NewRequest("GET", urlJira, nil)
-	checkError(err)
+	if err != nil {
+		log.Printf("http.NewRequest err   #%v ", err)
+	}
+
 	req.SetBasicAuth(userJira, passJira)
 	req.Header.Set("Content-Type", "application/json")
 
 	resp, err := http.DefaultClient.Do(req)
-	checkError(err)
+	if err != nil {
+		log.Printf("http.DefaultClient.Do err   #%v ", err)
+	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
-	checkError(err)
+	if err != nil {
+		log.Printf("ioutil.ReadAll err   #%v ", err)
+	}
 
 	return body
 }
@@ -424,7 +428,9 @@ func RequestIssue(project string, item string) JiraIssueResponse {
   response := HTTPRequest(project, url)
 
 	err := json.Unmarshal(response, &data)
-	checkError(err)
+	if err != nil {
+		log.Printf("json.Unmarshal err   #%v ", err)
+	}
 
   return data
 }
@@ -444,7 +450,9 @@ func RequestSearch(project string, query string) {
   response := HTTPRequest(project, url)
 
 	err := json.Unmarshal(response, &data)
-	checkError(err)
+	if err != nil {
+		log.Printf("json.Unmarshal err   #%v ", err)
+	}
 
 	fmt.Println(data)
 }
