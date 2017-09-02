@@ -1,6 +1,9 @@
 # GoJira [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/nelsonjvf/gojira) [![Build Status](http://img.shields.io/travis/fatih/structs.svg?style=flat-square)]() [![Coverage Status](http://img.shields.io/coveralls/fatih/structs.svg?style=flat-square)]()
 
-GoJira is a generic library to interact with Atlassian Jira REST API.
+GoJira is a basic and generic library to interact with Atlassian Jira REST API.
+The idea of this lib is to make your life easy, instead of learning the JIRA REST API, you just need to set your configuration and get the information.
+All the methos available return an Go object with the smae struter of the response from JIRA REST API.
+Fell free to add make comments and review the code.
 
 ## Install
 
@@ -95,7 +98,7 @@ Don't forget your yaml configuration file
 
 ### GoJira methods
 
-We can get an issue information
+We can get an issue information:
 
 ```RequestIssue(project, issueId)```
 
