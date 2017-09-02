@@ -64,20 +64,33 @@ func init() {
 }
 
 func main() {
-	fmt.Println("Starting test..")
+  fmt.Println("Starting test..")
 
-	fmt.Println("Calling RequestIssue method:")
+  fmt.Println("Calling RequestIssue method:")
 
-	issueToSearch := "ISSUE-12345"
-	requestIssueResponse := gojira.RequestIssue("Test Jira Env", issueToSearch)
-    fmt.Println(requestIssueResponse)
+  issueToSearch := "ISSUE-12345"
+  requestIssueResponse := gojira.RequestIssue("Dev Team", issueToSearch)
+  fmt.Println(requestIssueResponse)
 
-	fmt.Println("Calling RequestSearch method:")
+  fmt.Println("Calling RequestSearch method:")
 
-	stringToSearch := "Bug with comma"
-	requestSearchResponse := gojira.RequestSearch("Project", stringToSearch)
-	fmt.Println(requestSearchResponse)
+  stringToSearch := "Bug with comma"
+  requestSearchResponse := gojira.RequestSearch("Project", stringToSearch)
+  fmt.Println(requestSearchResponse)
 }
+```
+
+Don't forget your yaml configuration file
+
+```yaml
+- lable: Dev Team
+  user: JiraDevTeamUser
+  pass: JiraDevTeamPass
+  url: http:/dev.team.jira.com:8080/
+- lable: Project
+  user: JiraProjectUser
+  pass: JiraProjectPass
+  url: http:/project.team.jira.com:8080/
 ```
 
 ### GoJira methods
