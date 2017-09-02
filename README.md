@@ -41,11 +41,11 @@ gojira.RequestSearch("Project", "Error on workspace")
 
 We can get an issue information
 
-```jira.RequestIssue(issueId)```
+```RequestIssue(project, issueId)```
 
 We can also search in Jira:
 
-```jira.RequestSearch(query)```
+```RequestSearch(project, query)```
 
 ## Credits
 
