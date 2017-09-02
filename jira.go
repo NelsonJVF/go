@@ -354,7 +354,7 @@ type JiraSearchResponse struct {
 
 var Config []Configuration
 
-func setConf(externalConfig []Configuration) {
+func SetConf(externalConfig []Configuration) {
 	// Use external configuration
 	if(externalConfig != nil) {
 		Config = externalConfig
