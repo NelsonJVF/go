@@ -10,33 +10,31 @@ go get github.com/nelsonjvf/gojira
 
 ## Usage and Examples
 
-First of all you need to add your Jira information:
+First of all we need to configure and set your Jira information. For that we can use our config.yaml file as example and the following init function:
 
 ```go
-config = []configuration{
-  configuration {
-    Lable: "Lable",
-    User: "User",
-    Pass: "Pass",
-    Url: "URL",
-  },
-  configuration {
-    Lable: "Lable",
-    User: "User",
-    Pass: "Pass",
-    Url: "URL",
-  },
+func init() {
+	// Use yaml configuration file
+	yamlFile, err := ioutil.ReadFile("config.yaml")
+	if err != nil {
+		log.Printf("yamlFile.Get err   #%v ", err)
+	}
+
+	err = yaml.Unmarshal(yamlFile, &gojira.Config)
+	if err != nil {
+		log.Fatalf("Unmarshal: %v", err)
+	}
 }
 ```
 
-After that you can simply use the following methods to interact with JIRA:
+After that you can simply use the methods available to interact with JIRA:
 
 ```go
 // Get Jira issue information
-jira.RequestIssue("JIRA-4968")
+gojira.RequestIssue("Dev Team", "JIRA-4968")
 
 // Search a string in Jira
-jira.RequestSearch("Error on workspace")
+gojira.RequestSearch("Project", "Error on workspace")
 ```
 
 ### GoJira methods
