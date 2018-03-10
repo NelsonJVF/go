@@ -29,7 +29,6 @@ There is the full code to test it easly:
 package main
 
 import (
-	"io/ioutil"
 	"log"
 
 	"github.com/nelsonjvf/gojira"
