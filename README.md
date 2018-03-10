@@ -1,4 +1,4 @@
-# GoJira [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/nelsonjvf/gojira/pkg)
+# GoJira [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/nelsonjvf/gojira/pkg) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2be417c6f1b046f998a514861e1f1d8b)](https://www.codacy.com/app/NelsonJVF/gojira?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NelsonJVF/gojira&amp;utm_campaign=Badge_Grade)
 
 GoJira is a basic and generic package to interact with Atlassian Jira REST API.
 The idea of this package is to make your life easy, instead of learning the JIRA REST API, you just need to set your configuration and get the information.
