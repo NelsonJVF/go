@@ -12,12 +12,12 @@ import (
 	"time"
 )
 
-/*
-	Generic HTTP caller
-
-	URL - Jira address
-	Path - Rest api path - Useally "rest/api/2"
-*/
+// Generic HTTP caller
+// URL - Jira address
+// Path - Rest api path - Useally "rest/api/2"
+// Username - Jira username
+// Password - Jira user password
+// Parameters - Parameters to send to Jira
 func HTTPRequest(URL string, path string, username string, password string, parameters url.Values) (http.Response, error) {
 
 	var resp http.Response
@@ -50,9 +50,7 @@ func HTTPRequest(URL string, path string, username string, password string, para
 	return resp, nil
 }
 
-/*
-	Request specific Jira item, we should specify the project from that item
-*/
+// RequestIssue - Request specific Jira item, we should specify the project from that item
 func RequestIssue(URL string, username string, password string, item string) (JiraIssueResponse, error) {
 	var URLIssuePath string
 	var data JiraIssueResponse
@@ -79,9 +77,7 @@ func RequestIssue(URL string, username string, password string, item string) (Ji
 	return data, nil
 }
 
-/*
-	Search in Jira, we should specify the project from that item
-*/
+// RequestSearch - Search in Jira, we should specify the project from that item
 func RequestSearch(URL string, username string, password string, query string) (JiraSearchResponse, error) {
 	var URLSearchPath string
 	var data JiraSearchResponse
