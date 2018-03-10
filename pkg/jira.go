@@ -1,4 +1,3 @@
-// Copyright 2017 NelsonJVF. All rights reserved.
 package gojira
 
 import (
@@ -12,7 +11,7 @@ import (
 	"time"
 )
 
-// Generic HTTP caller
+// HTTPRequest is a generic HTTP caller
 // URL - Jira address
 // Path - Rest api path - Useally "rest/api/2"
 // Username - Jira username
