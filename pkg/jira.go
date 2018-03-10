@@ -53,7 +53,7 @@ func HTTPRequest(URL string, path string, username string, password string, para
 /*
 	Request specific Jira item, we should specify the project from that item
 */
-func RequestIssue(URL string, path string, username string, password string, item string) (JiraIssueResponse, error) {
+func RequestIssue(URL string, username string, password string, item string) (JiraIssueResponse, error) {
 	var URLIssuePath string
 	var data JiraIssueResponse
 
@@ -82,7 +82,7 @@ func RequestIssue(URL string, path string, username string, password string, ite
 /*
 	Search in Jira, we should specify the project from that item
 */
-func RequestSearch(URL string, path string, username string, password string, query string) (JiraSearchResponse, error) {
+func RequestSearch(URL string, username string, password string, query string) (JiraSearchResponse, error) {
 	var URLSearchPath string
 	var data JiraSearchResponse
 

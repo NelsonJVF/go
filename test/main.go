@@ -2,34 +2,22 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
 
 	"github.com/nelsonjvf/gojira"
-	"gopkg.in/yaml.v2"
 )
 
-func init() {
-	// Use yaml configuration file
-	yamlFile, err := ioutil.ReadFile("config.yaml")
-	if err != nil {
-		log.Printf("yamlFile.Get err   #%v ", err)
-	}
-
-	err = yaml.Unmarshal(yamlFile, &gojira.Config)
-	if err != nil {
-		log.Fatalf("Unmarshal: %v", err)
-	}
-}
-
 func main() {
+
+	var jiraURL = "http://jira-server.com/"
+	var jiraUsername = "my-jira-user"
+	var jiraPassword = "my-jira-password"
 
 	fmt.Println("Staring Testing..")
 	fmt.Println("Setting Configuration")
 
 	fmt.Println(gojira.Config)
 
-	gojira.RequestIssue("Test Jira Env", "ISSUE-12345")
-	gojira.RequestSearch("Project", "Bug with string")
+	gojira.RequestIssue(yourJiraURL, jiraUsername, jiraPassword, "ISSUE-12345")
+	gojira.RequestSearch(yourJiraURL, jiraUsername, jiraPassword, "Bug with string")
 
 }

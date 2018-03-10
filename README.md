@@ -1,4 +1,4 @@
-# GoJira [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/nelsonjvf/gojira)
+# GoJira [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/nelsonjvf/gojira/pkg)
 
 GoJira is a basic and generic package to interact with Atlassian Jira REST API.
 The idea of this package is to make your life easy, instead of learning the JIRA REST API, you just need to set your configuration and get the information.
@@ -8,36 +8,19 @@ Fell free to add make comments and review the code.
 ## Install
 
 ```bash
-go get github.com/nelsonjvf/gojira
+go get github.com/nelsonjvf/gojira/pkg
 ```
 
 ## Usage and Examples
 
-First of all we need to configure and set your Jira information. For that we can use our config.yaml file as example and the following init function:
-
-```go
-func init() {
-	// Use yaml configuration file
-	yamlFile, err := ioutil.ReadFile("config.yaml")
-	if err != nil {
-		log.Printf("yamlFile.Get err   #%v ", err)
-	}
-
-	err = yaml.Unmarshal(yamlFile, &gojira.Config)
-	if err != nil {
-		log.Fatalf("Unmarshal: %v", err)
-	}
-}
-```
-
-After that you can simply use the methods available to interact with JIRA:
+Simply use the methods available to interact with JIRA:
 
 ```go
 // Get Jira issue information
-gojira.RequestIssue("Dev Team", "JIRA-4968")
+gojira.RequestIssue("http://jira-server.com/", "user", "pass", "JIRA-4968")
 
 // Search a string in Jira
-gojira.RequestSearch("Project", "Error on workspace")
+gojira.RequestSearch("http://jira-server.com/", "user", "pass", "Error on workspace")
 ```
 
 There is the full code to test it easly:
@@ -46,65 +29,42 @@ There is the full code to test it easly:
 package main
 
 import (
-	"fmt"
-	"github.com/nelsonjvf/gojira"
 	"io/ioutil"
 	"log"
-	"gopkg.in/yaml.v2"
+
+	"github.com/nelsonjvf/gojira"
 )
 
-func init() {
-	// Use yaml configuration file
-	yamlFile, err := ioutil.ReadFile("config.yaml")
-	if err != nil {
-		log.Printf("yamlFile.Get err   #%v ", err)
-	}
-
-	err = yaml.Unmarshal(yamlFile, &gojira.Config)
-	if err != nil {
-		log.Fatalf("Unmarshal: %v", err)
-	}
-}
-
 func main() {
-  fmt.Println("Starting test..")
 
-  fmt.Println("Calling RequestIssue method:")
+	var jiraURL = "http://jira-server.com/"
+	var jiraUsername = "my-jira-user"
+	var jiraPassword = "my-jira-password"
 
-  issueToSearch := "ISSUE-12345"
-  requestIssueResponse := gojira.RequestIssue("Dev Team", issueToSearch)
-  fmt.Println(requestIssueResponse)
+	log.Println("Starting test..")
+	log.Println("Calling RequestIssue method:")
 
-  fmt.Println("Calling RequestSearch method:")
+	issueToSearch := "ISSUE-12345"
+	requestIssueResponse := gojira.RequestIssue(yourJiraURL, jiraUsername, jiraPassword, issueToSearch)
+	log.Println(requestIssueResponse)
 
-  stringToSearch := "Bug with comma"
-  requestSearchResponse := gojira.RequestSearch("Project", stringToSearch)
-  fmt.Println(requestSearchResponse)
+	log.Println("Calling RequestSearch method:")
+
+	stringToSearch := "Bug with comma"
+	requestSearchResponse := gojira.RequestSearch(yourJiraURL, jiraUsername, jiraPassword, stringToSearch)
+	log.Println(requestSearchResponse)
 }
-```
-
-Don't forget your yaml configuration file
-
-```yaml
-- lable: Dev Team
-  user: JiraDevTeamUser
-  pass: JiraDevTeamPass
-  url: http:/dev.team.jira.com:8080/
-- lable: Project
-  user: JiraProjectUser
-  pass: JiraProjectPass
-  url: http:/project.team.jira.com:8080/
 ```
 
 ### GoJira methods
 
 We can get an issue information:
 
-```RequestIssue(project, issueId)```
+```RequestIssue(URL, user, pass, issueId)```
 
 We can also search in Jira:
 
-```RequestSearch(project, query)```
+```RequestSearch(URL, user, pass, query)```
 
 ## Credits
 
