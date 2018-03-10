@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/nelsonjvf/gojira"
 	"io/ioutil"
 	"log"
+
+	"github.com/nelsonjvf/gojira"
 	"gopkg.in/yaml.v2"
 )
 
@@ -24,13 +25,11 @@ func init() {
 func main() {
 
 	fmt.Println("Staring Testing..")
-
 	fmt.Println("Setting Configuration")
 
 	fmt.Println(gojira.Config)
 
 	gojira.RequestIssue("Test Jira Env", "ISSUE-12345")
-
 	gojira.RequestSearch("Project", "Bug with string")
 
 }

@@ -7,7 +7,7 @@ type Configuration struct {
 	Lable string `yaml:"lable"` // Some projects have more than one Jira, so just lable as you wish
 	User  string `yaml:"user"`  // Username for Jira
 	Pass  string `yaml:"pass"`  // Password from Jira Username
-	Url   string `yaml:"url"`   // URL to Jira hostname + port
+	URL   string `yaml:"url"`   // URL to Jira hostname + port
 }
 
 /*
